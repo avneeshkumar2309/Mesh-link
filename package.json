@@ -1,0 +1,38 @@
+{
+  "name": "meshlink",
+  "version": "1.0.0",
+  "description": "Offline Peer-to-Peer Local Mesh Communication and File Transfer System",
+  "main": "server/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "client": "npm --prefix client run dev",
+    "build:client": "npm --prefix client run build",
+    "dev": "concurrently -k -n \"SRV,CLI\" -c \"cyan,magenta\" \"node server/index.js\" \"npm --prefix client run dev\"",
+    "peer1": "node server/index.js --port 4001 --client-port 5174 --name \"Peer Alpha\" --dataDir data/peer1",
+    "peer2": "node server/index.js --port 4002 --client-port 5175 --name \"Peer Beta\" --dataDir data/peer2",
+    "dev:dual": "concurrently -k -n \"PEER-A,PEER-B\" -c \"blue,green\" \"npm run peer1\" \"npm run peer2\""
+  },
+  "keywords": [
+    "p2p",
+    "offline",
+    "mesh",
+    "file-transfer",
+    "chat",
+    "lan-discovery"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.3.0",
+    "mime-types": "^3.0.2",
+    "multer": "^2.4.0",
+    "uuid": "^14.0.3",
+    "ws": "^8.22.0"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
